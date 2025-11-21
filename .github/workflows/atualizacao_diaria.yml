@@ -1,0 +1,33 @@
+name: Atualizar Brasileirão Diariamente
+
+on:
+  schedule:
+    - cron: '0 10 * * *' # Roda todo dia às 07:00 da manhã (Brasil)
+  workflow_dispatch: # Botão para rodar manualmente
+
+jobs:
+  coletar-dados:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Instalar soccerdata
+        run: pip install soccerdata pandas lxml html5lib
+
+      - name: Rodar script
+        run: python coleta_dados.py
+
+      - name: Salvar arquivos CSV
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Atualização automática dos jogos"
+          file_pattern: "*.csv"
