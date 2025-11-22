@@ -1,79 +1,72 @@
-import requests
 import pandas as pd
-from datetime import datetime
-import json
-import time
+import requests
+import io
 
-def atualizar_brasileirao_direto():
-    print("--- INICIANDO COLETA DIRETA (SEM LIBRARY) ---")
+def baixar_historico_2025():
+    print("--- BAIXANDO BASE DE DADOS DE 2025 ---")
     
-    # ID do Brasileirão Série A no FotMob é 268
-    # ID da Temporada 2024 (o calendário 2025 ainda não saiu na API, usaremos 2024 para teste)
-    url = "https://www.fotmob.com/api/leagues?id=268&season=2024"
+    # Fonte alternativa muito robusta (Football-Data.co.uk)
+    # Eles mantêm arquivos CSV limpos de várias ligas, incluindo o Brasil
+    url_csv = "https://www.football-data.co.uk/new/BRA.csv"
     
-    # Truque: Fingir que somos um navegador Chrome comum para não ser bloqueado
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    }
-
     try:
-        print("1. Acessando API do FotMob direto...")
-        response = requests.get(url, headers=headers)
+        print(f"1. Baixando arquivo: {url_csv}")
+        s = requests.get(url_csv).content
         
-        if response.status_code != 200:
-            print(f"❌ Erro ao acessar site: {response.status_code}")
-            return
+        # Lê o CSV
+        df = pd.read_csv(io.StringIO(s.decode('utf-8')))
+        
+        print(f"2. Arquivo baixado. Total de linhas históricas: {len(df)}")
+        
+        # --- TRATAMENTO INTELIGENTE DE DADOS ---
+        
+        # 1. Converter coluna de data (O padrão deles costuma ser dd/mm/yyyy)
+        df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
+        
+        # 2. Criar coluna de Ano
+        df['Ano'] = df['Date'].dt.year
+        
+        # 3. FILTRAR APENAS 2025
+        # (Como estamos em Nov/2025, isso deve trazer quase todo o campeonato)
+        df_2025 = df[df['Ano'] == 2025].copy()
+        
+        if len(df_2025) == 0:
+            print("⚠️ Aviso: O arquivo baixado ainda não contém jogos registrados com a data '2025'.")
+            print("Verificando anos disponíveis no arquivo:", df['Ano'].unique())
+            return None
 
-        data = response.json()
+        # 4. Selecionar e Renomear Colunas para Português
+        # O arquivo padrão tem: Date, Time, Home, Away, HG (Home Goals), AG (Away Goals), Res (Result)
+        df_final = df_2025[['Date', 'Time', 'Home', 'HG', 'AG', 'Away', 'Res']].copy()
         
-        # O FotMob entrega os jogos dentro de 'matches' -> 'allMatches'
-        print("2. Processando dados recebidos...")
-        todos_jogos = data['matches']['allMatches']
+        df_final.columns = ['Data', 'Hora', 'Mandante', 'Gols_Mandante', 'Gols_Visitante', 'Visitante', 'Resultado']
         
-        lista_jogos = []
-        
-        for jogo in todos_jogos:
-            # Extraindo dados com segurança
-            data_jogo = jogo.get('pageUrl', '').split('/')[2] if 'pageUrl' in jogo else '' # Tenta pegar data da URL
-            # Ou converte timestamp se disponível
-            
-            linha = {
-                'Rodada': jogo.get('round', ''),
-                'Data_Hora': jogo.get('status', {}).get('utcTime', ''),
-                'Status': 'Finalizado' if jogo.get('status', {}).get('finished') else 'Agendado',
-                'Time_Mandante': jogo.get('home', {}).get('name', ''),
-                'Gols_Mandante': jogo.get('home', {}).get('score', 0),
-                'Gols_Visitante': jogo.get('away', {}).get('score', 0),
-                'Time_Visitante': jogo.get('away', {}).get('name', ''),
-                'ID_Jogo': jogo.get('id', '')
-            }
-            lista_jogos.append(linha)
+        # Formatar a data para ficar bonita (dd/mm/aaaa)
+        df_final['Data'] = df_final['Data'].dt.strftime('%d/%m/%Y')
 
-        # Cria Tabela
-        df = pd.DataFrame(lista_jogos)
+        print("\n" + "="*60)
+        print(f"✅ HISTÓRICO 2025 RECUPERADO COM SUCESSO!")
+        print(f"Total de jogos encontrados: {len(df_final)}")
+        print("="*60)
+        print(df_final.tail(15).to_string(index=False)) # Mostra os últimos 15 jogos
+        print("="*60)
         
-        # Tratamento de Data (opcional, para ficar bonito)
+        # Salva o arquivo pronto
+        df_final.to_csv("brasileirao_2025_completo.csv", index=False)
+        return df_final
+
+    except Exception as e:
+        print(f"❌ Erro ao processar: {e}")
+        # Se der erro, imprime as colunas para a gente saber o nome certo
         try:
-            df['Data_Hora'] = pd.to_datetime(df['Data_Hora']).dt.strftime('%d/%m/%Y %H:%M')
+            print("Colunas disponíveis no arquivo:", df.columns.tolist())
         except:
             pass
 
-        # --- PRÉ-VISUALIZAÇÃO ---
-        print("\n" + "="*50)
-        print(f"Foram encontrados {len(df)} jogos.")
-        print("AMOSTRA (Últimos 5 jogos):")
-        print(df.tail(5).to_string())
-        print("="*50 + "\n")
-        # ------------------------
+# Executar
+df = baixar_historico_2025()
 
-        # Salva
-        df.to_csv("resultados_brasileirao.csv", index=False)
-        print("✅ SUCESSO! Arquivo salvo.")
+pd.set_option('display.max_rows', None)
 
-    except Exception as e:
-        print(f"❌ Erro crítico: {e}")
-        import traceback
-        traceback.print_exc()
-
-if __name__ == "__main__":
-    atualizar_brasileirao_direto()
+print("LISTA COMPLETA DE JOGOS:")
+print(df)
