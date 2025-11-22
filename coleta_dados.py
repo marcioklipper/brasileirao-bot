@@ -3,41 +3,50 @@ import pandas as pd
 from datetime import datetime
 import os
 
-# Configurações
+# Configuração para o robô
 os.environ["SOC_CACHE"] = "e" 
 
 def atualizar_brasileirao():
-    print("--- INICIANDO ROBÔ ---")
+    print("--- INICIANDO ROBÔ (FOTMOB) ---")
     
     try:
-        # 1. Conecta à ESPN
-        print("1. Conectando à ESPN...")
-        espn = sd.ESPN(leagues="BRA-Serie A", seasons=["2024", "2025"])
+        # 1. Conecta ao FOTMOB (Fonte muito mais rápida e estável)
+        print("1. Conectando ao servidor do FotMob...")
+        # O FotMob geralmente aceita bem o código BRA-Serie A
+        fotmob = sd.FotMob(leagues="BRA-Serie A", seasons=["2025"])
         
-        # 2. Baixa a tabela
-        print("2. Baixando dados...")
-        schedule = espn.read_schedule(force_cache=True)
+        # 2. Baixa a tabela de jogos
+        print("2. Baixando tabela de jogos...")
+        schedule = fotmob.read_schedule()
         
-        # 3. Limpa e seleciona colunas
+        # 3. Limpeza e Organização
+        print("3. Organizando dados...")
         df_jogos = schedule.reset_index()
-        # Aqui selecionamos as colunas mais importantes
-        df_jogos = df_jogos[['date', 'season', 'round', 'home_team', 'home_score', 'away_score', 'away_team', 'game_id']]
         
-        # --- AQUI ESTÁ A PRÉ-VISUALIZAÇÃO ---
-        print("\n" + "="*50)
-        print("PRÉ-VISUALIZAÇÃO DOS DADOS (Primeiras 5 linhas):")
-        print("="*50)
-        # O .to_string() força o python a mostrar todas as colunas sem cortar
-        print(df_jogos.head().to_string()) 
-        print("="*50 + "\n")
-        # ------------------------------------
+        # Seleciona colunas úteis (O FotMob traz nomes ligeiramente diferentes)
+        # Vamos garantir que pegamos data, times e placar
+        colunas_desejadas = ['date', 'home_team', 'away_team', 'home_score', 'away_score', 'round', 'game_id']
+        
+        # Filtra apenas as colunas que existem no resultado
+        cols_finais = [c for c in colunas_desejadas if c in df_jogos.columns]
+        df_final = df_jogos[cols_finais]
 
-        # 4. Salva
-        df_jogos.to_csv("resultados_brasileirao.csv", index=False)
-        print("✅ Arquivo salvo com sucesso!")
+        # --- PRÉ-VISUALIZAÇÃO NO LOG ---
+        print("\n" + "="*50)
+        print("AMOSTRA DOS DADOS BAIXADOS:")
+        print(df_final.tail(5).to_string()) # Mostra os últimos 5 jogos
+        print("="*50 + "\n")
+        # -------------------------------
+
+        # 4. Salva o arquivo
+        df_final.to_csv("resultados_brasileirao.csv", index=False)
+        print("✅ SUCESSO! Arquivo 'resultados_brasileirao.csv' salvo.")
 
     except Exception as e:
         print(f"❌ Erro: {e}")
+        # Se der erro, mostra detalhes para ajustarmos
+        import traceback
+        traceback.print_exc()
 
 if __name__ == "__main__":
     atualizar_brasileirao()
