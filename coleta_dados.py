@@ -3,31 +3,41 @@ import pandas as pd
 from datetime import datetime
 import os
 
-# Configuração para evitar bloqueios e gerenciar cache
+# Configurações
 os.environ["SOC_CACHE"] = "e" 
 
 def atualizar_brasileirao():
-    print("Iniciando coleta de dados do FBref...")
+    print("--- INICIANDO ROBÔ ---")
     
-    # 1. Conecta ao FBref (fonte gratuita)
-    # Puxa dados de 2024 e 2025 (para garantir histórico e futuro)
-    fbref = sd.FBref(leagues="BRA-Serie A", seasons=["2024", "2025"])
-    
-    # 2. Baixa a tabela de jogos (Placares)
-    print("Baixando tabela de jogos...")
-    schedule = fbref.read_schedule(force_cache=True)
-    
-    # 3. Tenta baixar detalhes (Quem fez o gol)
     try:
-        print("Baixando detalhes das partidas...")
-        match_stats = fbref.read_player_match_stats(stat_type="summary", force_cache=True)
-        match_stats.to_csv("detalhes_gols_jogadores.csv")
-    except Exception as e:
-        print(f"Aviso: Detalhes ainda não disponíveis ou erro na coleta: {e}")
+        # 1. Conecta à ESPN
+        print("1. Conectando à ESPN...")
+        espn = sd.ESPN(leagues="BRA-Serie A", seasons=["2024", "2025"])
+        
+        # 2. Baixa a tabela
+        print("2. Baixando dados...")
+        schedule = espn.read_schedule(force_cache=True)
+        
+        # 3. Limpa e seleciona colunas
+        df_jogos = schedule.reset_index()
+        # Aqui selecionamos as colunas mais importantes
+        df_jogos = df_jogos[['date', 'season', 'round', 'home_team', 'home_score', 'away_score', 'away_team', 'game_id']]
+        
+        # --- AQUI ESTÁ A PRÉ-VISUALIZAÇÃO ---
+        print("\n" + "="*50)
+        print("PRÉ-VISUALIZAÇÃO DOS DADOS (Primeiras 5 linhas):")
+        print("="*50)
+        # O .to_string() força o python a mostrar todas as colunas sem cortar
+        print(df_jogos.head().to_string()) 
+        print("="*50 + "\n")
+        # ------------------------------------
 
-    # 4. Salva o arquivo principal
-    schedule.to_csv("resultados_brasileirao.csv")
-    print(f"Sucesso! Dados salvos em {datetime.now()}")
+        # 4. Salva
+        df_jogos.to_csv("resultados_brasileirao.csv", index=False)
+        print("✅ Arquivo salvo com sucesso!")
+
+    except Exception as e:
+        print(f"❌ Erro: {e}")
 
 if __name__ == "__main__":
     atualizar_brasileirao()
