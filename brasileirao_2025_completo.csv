@@ -332,10 +332,19 @@ Data,Hora,Mandante,Gols_Mandante,Gols_Visitante,Visitante,Resultado
 16/11/2025,22:00,Bragantino,2.0,0.0,Atletico-MG,Mandante
 18/11/2025,23:30,Botafogo RJ,3.0,2.0,Sport Recife,Mandante
 19/11/2025,22:30,Palmeiras,0.0,0.0,Vitoria,Empate
-20/11/2025,0:30,Fluminense,2.0,1.0,Flamengo RJ,Mandante
-20/11/2025,0:30,Gremio,2.0,0.0,Vasco,Mandante
-20/11/2025,0:30,Santos,1.0,1.0,Mirassol,Empate
+20/11/2025,00:30,Fluminense,2.0,1.0,Flamengo RJ,Mandante
+20/11/2025,00:30,Gremio,2.0,0.0,Vasco,Mandante
+20/11/2025,00:30,Santos,1.0,1.0,Mirassol,Empate
 20/11/2025,19:00,Juventude,3.0,3.0,Cruzeiro,Empate
 20/11/2025,21:00,Bahia,2.0,3.0,Fortaleza,Visitante
 20/11/2025,22:30,Corinthians,3.0,1.0,Sao Paulo,Mandante
-21/11/2025,0:30,Ceara,1.0,2.0,Internacional,Visitante
+21/11/2025,00:30,Ceara,1.0,2.0,Internacional,Visitante
+22/11/2025,22:30,Botafogo RJ,3.0,2.0,Gremio,Mandante
+23/11/2025,00:30,Flamengo RJ,3.0,0.0,Bragantino,Mandante
+23/11/2025,00:30,Palmeiras,0.0,0.0,Fluminense,Empate
+23/11/2025,19:00,Bahia,1.0,0.0,Vasco,Mandante
+23/11/2025,19:00,Sao Paulo,2.0,1.0,Juventude,Mandante
+23/11/2025,21:30,Sport Recife,1.0,3.0,Vitoria,Visitante
+23/11/2025,23:30,Cruzeiro,3.0,0.0,Corinthians,Mandante
+24/11/2025,22:00,Mirassol,3.0,0.0,Ceara,Mandante
+25/11/2025,00:00,Internacional,1.0,1.0,Santos,Empate
