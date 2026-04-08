@@ -2,7 +2,6 @@ name: Atualizar Brasileirão Diariamente
 
 on:
   schedule:
-    - cron: '0 10 * * *' # Roda todo dia às 07:00 da manhã (Brasil)
   workflow_dispatch: # Botão para rodar manualmente
 
 jobs:
