@@ -2,10 +2,9 @@ import pandas as pd
 import requests
 import io
 from datetime import datetime
-import os
 
-def baixar_historico_2025():
-    print("--- INICIANDO ROBÔ (FONTE: Football-Data.co.uk) ---")
+def baixar_historico_2026():
+    print("\n--- INICIANDO ROBÔ (FONTE: Football-Data.co.uk) ---")
     
     # URL estável que não bloqueia robôs
     url_csv = "https://www.football-data.co.uk/new/BRA.csv"
@@ -21,16 +20,17 @@ def baixar_historico_2025():
         # 1. Converter data
         df['Date'] = pd.to_datetime(df['Date'], dayfirst=True, errors='coerce')
         
-        # 2. Filtrar apenas 2025
+        # 2. Filtrar apenas 2026
         df['Ano'] = df['Date'].dt.year
-        df_2025 = df[df['Ano'] == 2025].copy()
+        df_2026 = df[df['Ano'] == 2026].copy()
         
-        if df_2025.empty:
-            print("⚠️ Aviso: Jogos de 2025 não encontrados no arquivo fonte.")
+        if df_2026.empty:
+            print("⚠️ Aviso: Jogos de 2026 não encontrados no arquivo fonte.")
+            print("Isso é comum se o campeonato ainda não começou ou os dados não foram atualizados na fonte.")
             return
 
         # 3. Selecionar e Traduzir Colunas
-        df_final = df_2025[['Date', 'Time', 'Home', 'HG', 'AG', 'Away', 'Res']].copy()
+        df_final = df_2026[['Date', 'Time', 'Home', 'HG', 'AG', 'Away', 'Res']].copy()
         df_final.columns = ['Data', 'Hora', 'Mandante', 'Gols_Mandante', 'Gols_Visitante', 'Visitante', 'Resultado']
         
         # --- TRADUÇÃO H/A/D ---
@@ -46,7 +46,7 @@ def baixar_historico_2025():
         df_final['Data'] = df_final['Data'].dt.strftime('%d/%m/%Y')
 
         # 4. Salvar Arquivo
-        nome_arquivo = "brasileirao_2025_completo.csv"
+        nome_arquivo = "brasileirao_2026_completo.csv"
         df_final.to_csv(nome_arquivo, index=False)
 
         print("\n" + "="*60)
@@ -59,7 +59,14 @@ def baixar_historico_2025():
 
     except Exception as e:
         print(f"❌ Erro crítico: {e}")
-        exit(1) # Isso avisa o GitHub que deu erro
+        exit(1) # Isso avisa o GitHub/Terminal que deu erro
 
 if __name__ == "__main__":
-    baixar_historico_2025()
+    # O robô aguarda um comando explícito para rodar
+    print("Robô pronto para execução.")
+    comando = input("Digite 'rodar' e pressione Enter para iniciar a extração: ").strip().lower()
+    
+    if comando == 'rodar':
+        baixar_historico_2026()
+    else:
+        print("Comando não reconhecido ou execução cancelada. Encerrando...")
