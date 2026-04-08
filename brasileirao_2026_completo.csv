@@ -1,0 +1,98 @@
+Data,Hora,Mandante,Gols_Mandante,Gols_Visitante,Visitante,Resultado
+28/01/2026,22:00,Atletico-MG,2.0,2.0,Palmeiras,Empate
+28/01/2026,22:00,Coritiba,0.0,1.0,Bragantino,Visitante
+28/01/2026,22:00,Internacional,0.0,1.0,Athletico-PR,Visitante
+28/01/2026,22:00,Vitoria,2.0,0.0,Remo,Mandante
+28/01/2026,22:30,Fluminense,2.0,1.0,Gremio,Mandante
+28/01/2026,23:00,Chapecoense-SC,4.0,2.0,Santos,Mandante
+28/01/2026,23:00,Corinthians,1.0,2.0,Bahia,Visitante
+29/01/2026,00:30,Sao Paulo,2.0,1.0,Flamengo RJ,Mandante
+29/01/2026,23:00,Mirassol,2.0,1.0,Vasco,Mandante
+30/01/2026,00:30,Botafogo RJ,4.0,0.0,Cruzeiro,Mandante
+04/02/2026,22:00,Bragantino,1.0,0.0,Atletico-MG,Mandante
+04/02/2026,22:00,Flamengo RJ,1.0,1.0,Internacional,Empate
+04/02/2026,23:00,Remo,2.0,2.0,Mirassol,Empate
+04/02/2026,23:00,Santos,1.0,1.0,Sao Paulo,Empate
+05/02/2026,00:30,Gremio,5.0,3.0,Botafogo RJ,Mandante
+05/02/2026,00:30,Palmeiras,5.0,1.0,Vitoria,Mandante
+05/02/2026,22:00,Bahia,1.0,1.0,Fluminense,Empate
+05/02/2026,23:00,Vasco,1.0,1.0,Chapecoense-SC,Empate
+06/02/2026,00:30,Cruzeiro,1.0,2.0,Coritiba,Visitante
+11/02/2026,00:30,Vitoria,1.0,2.0,Flamengo RJ,Visitante
+11/02/2026,22:00,Chapecoense-SC,3.0,3.0,Coritiba,Empate
+11/02/2026,22:00,Mirassol,2.0,2.0,Cruzeiro,Empate
+11/02/2026,23:00,Atletico-MG,3.0,3.0,Remo,Empate
+12/02/2026,00:30,Sao Paulo,2.0,0.0,Gremio,Mandante
+12/02/2026,00:30,Vasco,0.0,1.0,Bahia,Visitante
+12/02/2026,22:00,Athletico-PR,2.0,1.0,Santos,Mandante
+12/02/2026,22:30,Fluminense,1.0,0.0,Botafogo RJ,Mandante
+12/02/2026,23:00,Corinthians,2.0,0.0,Bragantino,Mandante
+13/02/2026,00:30,Internacional,1.0,3.0,Palmeiras,Visitante
+19/02/2026,22:30,Athletico-PR,0.0,1.0,Corinthians,Visitante
+25/02/2026,22:00,Bragantino,1.0,1.0,Athletico-PR,Empate
+25/02/2026,22:00,Remo,1.0,1.0,Internacional,Empate
+25/02/2026,22:30,Coritiba,0.0,1.0,Sao Paulo,Visitante
+25/02/2026,23:00,Cruzeiro,1.0,1.0,Corinthians,Empate
+26/02/2026,00:30,Gremio,2.0,1.0,Atletico-MG,Mandante
+26/02/2026,00:30,Palmeiras,2.0,1.0,Fluminense,Mandante
+26/02/2026,22:00,Santos,2.0,1.0,Vasco,Mandante
+11/03/2026,00:30,Mirassol,2.0,2.0,Santos,Empate
+11/03/2026,22:00,Atletico-MG,1.0,0.0,Internacional,Mandante
+11/03/2026,23:00,Bahia,1.0,1.0,Vitoria,Empate
+12/03/2026,00:30,Corinthians,0.0,2.0,Coritiba,Visitante
+12/03/2026,00:30,Flamengo RJ,2.0,0.0,Cruzeiro,Mandante
+12/03/2026,22:00,Remo,0.0,2.0,Fluminense,Visitante
+12/03/2026,22:30,Vasco,2.0,1.0,Palmeiras,Mandante
+12/03/2026,23:00,Sao Paulo,2.0,0.0,Chapecoense-SC,Mandante
+13/03/2026,00:30,Gremio,1.0,1.0,Bragantino,Empate
+14/03/2026,21:30,Vitoria,2.0,0.0,Atletico-MG,Mandante
+14/03/2026,23:30,Botafogo RJ,0.0,3.0,Flamengo RJ,Visitante
+15/03/2026,19:00,Fluminense,3.0,2.0,Athletico-PR,Mandante
+15/03/2026,19:00,Internacional,0.0,1.0,Bahia,Visitante
+15/03/2026,19:00,Santos,1.0,1.0,Corinthians,Empate
+15/03/2026,21:30,Coritiba,1.0,0.0,Remo,Mandante
+15/03/2026,21:30,Palmeiras,1.0,0.0,Mirassol,Mandante
+15/03/2026,23:30,Bragantino,1.0,2.0,Sao Paulo,Visitante
+15/03/2026,23:30,Cruzeiro,3.0,3.0,Vasco,Empate
+16/03/2026,23:00,Chapecoense-SC,1.0,1.0,Gremio,Empate
+18/03/2026,22:00,Bahia,2.0,0.0,Bragantino,Mandante
+18/03/2026,22:00,Palmeiras,2.0,1.0,Botafogo RJ,Mandante
+18/03/2026,22:30,Athletico-PR,2.0,1.0,Cruzeiro,Mandante
+18/03/2026,23:00,Atletico-MG,1.0,0.0,Sao Paulo,Mandante
+18/03/2026,23:00,Mirassol,0.0,1.0,Coritiba,Visitante
+19/03/2026,00:30,Santos,1.0,2.0,Internacional,Visitante
+19/03/2026,00:30,Vasco,3.0,2.0,Fluminense,Mandante
+19/03/2026,22:00,Gremio,2.0,0.0,Vitoria,Mandante
+19/03/2026,23:00,Flamengo RJ,3.0,0.0,Remo,Mandante
+20/03/2026,00:30,Chapecoense-SC,0.0,0.0,Corinthians,Empate
+21/03/2026,19:00,Bragantino,1.0,2.0,Botafogo RJ,Visitante
+21/03/2026,21:30,Fluminense,1.0,0.0,Atletico-MG,Mandante
+22/03/2026,00:00,Sao Paulo,0.0,1.0,Palmeiras,Visitante
+22/03/2026,19:00,Athletico-PR,2.0,0.0,Coritiba,Mandante
+22/03/2026,19:00,Cruzeiro,0.0,0.0,Santos,Empate
+22/03/2026,19:00,Remo,4.0,1.0,Bahia,Mandante
+22/03/2026,19:00,Vasco,2.0,1.0,Gremio,Mandante
+22/03/2026,21:30,Internacional,2.0,0.0,Chapecoense-SC,Mandante
+22/03/2026,21:30,Vitoria,1.0,0.0,Mirassol,Mandante
+22/03/2026,23:30,Corinthians,1.0,1.0,Flamengo RJ,Empate
+29/03/2026,23:30,Athletico-PR,4.0,1.0,Botafogo RJ,Mandante
+01/04/2026,23:30,Botafogo RJ,3.0,2.0,Mirassol,Mandante
+01/04/2026,23:30,Internacional,1.0,1.0,Sao Paulo,Empate
+02/04/2026,00:00,Bahia,3.0,0.0,Athletico-PR,Mandante
+02/04/2026,00:00,Cruzeiro,3.0,0.0,Vitoria,Mandante
+02/04/2026,00:30,Coritiba,1.0,1.0,Vasco,Empate
+02/04/2026,01:30,Fluminense,3.0,1.0,Corinthians,Mandante
+02/04/2026,23:00,Chapecoense-SC,0.0,4.0,Atletico-MG,Visitante
+02/04/2026,23:00,Santos,2.0,0.0,Remo,Mandante
+03/04/2026,01:30,Bragantino,3.0,0.0,Flamengo RJ,Mandante
+03/04/2026,01:30,Palmeiras,2.0,1.0,Gremio,Mandante
+04/04/2026,22:30,Sao Paulo,4.0,1.0,Cruzeiro,Mandante
+05/04/2026,00:30,Coritiba,1.0,1.0,Fluminense,Empate
+05/04/2026,01:00,Vasco,1.0,2.0,Botafogo RJ,Visitante
+05/04/2026,20:00,Chapecoense-SC,1.0,1.0,Vitoria,Empate
+05/04/2026,21:30,Atletico-MG,2.0,1.0,Athletico-PR,Mandante
+05/04/2026,21:30,Flamengo RJ,3.0,1.0,Santos,Mandante
+05/04/2026,23:30,Bahia,1.0,2.0,Palmeiras,Visitante
+05/04/2026,23:30,Corinthians,0.0,1.0,Internacional,Visitante
+06/04/2026,00:00,Mirassol,0.0,1.0,Bragantino,Visitante
+06/04/2026,00:30,Gremio,0.0,0.0,Remo,Empate
