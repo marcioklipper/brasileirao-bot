@@ -63,16 +63,6 @@ def baixar_historico_2026():
         exit(1) # Isso avisa o GitHub/Terminal que deu erro
 
 if __name__ == "__main__":
-    # O robô aguarda um comando explícito para rodar
-    print("Robô pronto para execução.")
-    comando = input("Digite 'rodar' e pressione Enter para iniciar a extração: ").strip().lower()
-    
-    if comando == 'rodar':
-        baixar_historico_2026()
-    else:
-        print("Comando não reconhecido ou execução cancelada. Encerrando...")
-
-if __name__ == "__main__":
     # O robô agora aguarda um argumento na linha de comando
     # Exemplo de uso: python coleta_dados.py rodar
     
