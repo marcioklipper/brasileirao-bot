@@ -1,5 +1,4 @@
 name: Atualizar Brasileirão Diariamente
-run: python coleta_dados.py rodar
 
 on:
   schedule:
