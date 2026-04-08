@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 import io
 from datetime import datetime
+import sys
 
 def baixar_historico_2026():
     print("\n--- INICIANDO ROBÔ (FONTE: Football-Data.co.uk) ---")
@@ -70,3 +71,13 @@ if __name__ == "__main__":
         baixar_historico_2026()
     else:
         print("Comando não reconhecido ou execução cancelada. Encerrando...")
+
+if __name__ == "__main__":
+    # O robô agora aguarda um argumento na linha de comando
+    # Exemplo de uso: python coleta_dados.py rodar
+    
+    if len(sys.argv) > 1 and sys.argv[1].lower() == 'rodar':
+        baixar_historico_2026()
+    else:
+        print("Execução ignorada. Para rodar a extração, use o comando:")
+        print("python coleta_dados.py rodar")
