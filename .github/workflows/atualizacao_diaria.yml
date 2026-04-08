@@ -24,7 +24,7 @@ jobs:
         run: pip install soccerdata pandas lxml html5lib
 
       - name: Rodar script
-        run: python coleta_dados.py
+        run: python coleta_dados.py rodar
 
       - name: Salvar arquivos CSV
         uses: stefanzweifel/git-auto-commit-action@v4
